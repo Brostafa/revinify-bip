@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revinify - Stripe Monitoring Reimagined</title>
+  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+  <meta
+    content="Revinify is the ultimate Stripe alerting dashboard. Monitor payments, failed charges, churn, and MRR across multiple Stripe accounts with real-time alerts."
+    name="description" />
+  <meta content="Stripe alerts, Stripe monitoring, SaaS metrics, MRR tracking, churn alerts, Stripe dashboard"
+    name="keywords" />
+  <meta content="index, follow" name="robots" />
+  <meta content="Revinify – Real-Time Stripe Monitoring and Alerts" property="og:title" />
+  <meta
+    content="Get real-time alerts and unified metrics across all your Stripe accounts. Monitor churn, failed payments, and new revenue instantly."
+    property="og:description" />
+  <meta content="https://revinify.com/assets/preview.png" property="og:image" />
+  <meta content="https://revinify.com" property="og:url" />
+  <meta content="website" property="og:type" />
+  <link href="https://revinify.com" rel="canonical" />
+  <script type="application/ld+json">[
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Revinify",
+      "image": "https://revinify.com/assets/preview.png",
+      "url": "https://revinify.com",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Revinify provides real-time alerts and monitoring for multiple Stripe accounts, helping SaaS founders stay on top of revenue, churn, and failed payments.",
+      "offers": {
+        "@type": "Offer",
+        "price": "9.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Revinify"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Revinify?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Revinify is a SaaS tool that monitors multiple Stripe accounts and sends real-time alerts for events like payments, churn, and failed transactions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Revinify for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Revinify is built for SaaS founders, indie hackers, freelancers, and agencies managing multiple Stripe-powered projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the pricing plans?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plans start at $9.99/month for 1 Stripe account. Pro ($19.99), Team ($29.99), and Enterprise plans are available with more features and accounts."
+          }
+        }
+      ]
+    }
+  ]</script>
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5H8ZF9ZV');</script>
+  <!-- End Google Tag Manager -->
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XJFWLMMNM6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XJFWLMMNM6');
+</script>
+  <link href="./tailwind-styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5H8ZF9ZV"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="flex min-h-screen flex-col bg-black text-white">
+    <header class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur">
+      <div class="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+        <div class="flex gap-2 items-center text-xl font-bold">
+          <img src="" alt="">
+          <span>Revinify</span>
+        </div>
+        <div class="flex flex-1 items-center justify-end space-x-4">
+          <nav class="flex items-center space-x-2">
+            <a href="#features"
+              class="btn btn-ghost px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800">Features</a>
+            <a href="#pricing"
+              class="btn btn-ghost px-4 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800">Pricing</a>
+            <a href="#waitlist" class="btn btn-primary px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white">Join
+              Waitlist</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section id="hero" class="w-full relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/0 pointer-events-none"></div>
+        <div class="container px-4 md:px-6 relative z-10">
+          <div class="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
+            <div
+              class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium mb-4">
+              <span>Stripe Monitoring Reimagined</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
+              Real-Time Alerts for All Your Stripe Accounts — In One Place
+            </h1>
+            <p class="max-w-[800px] text-zinc-400 text-xl md:text-2xl">
+              Monitor revenue, churn, and failed payments across multiple Stripe accounts with instant alerts via
+              Slack, Telegram, or Email.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#waitlist" id="waitlist"
+                class="btn btn-primary px-8 h-12 rounded-md bg-purple-600 hover:bg-purple-700 text-white flex items-center justify-center">
+                <svg class="icon mr-2" viewBox="0 0 24 24" width="20" height="20">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Join the Waitlist – 7-Day Free Trial
+              </a>
+              <a href="#features"
+                class="btn btn-outline px-8 h-12 rounded-md border-zinc-700 text-zinc-300 hover:bg-zinc-800 flex items-center justify-center">
+                Learn More
+                <svg class="icon ml-2" viewBox="0 0 24 24" width="16" height="16">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-20 relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-purple-600/10 to-black/10 rounded-xl pointer-events-none">
+            </div>
+            <div class="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+              <img src="https://placehold.co/1200x600/18181b/d4d4d8" alt="Revinify Dashboard Preview"
+                class="w-full object-cover">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Multi-Stripe Support Matters -->
+      <section id="matters" class="w-full bg-zinc-900/50">
+        <div class="container px-4 md:px-6">
+          <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            <div class="order-2 lg:order-1">
+              <h2 class="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Unified Stripe Monitoring</h2>
+              <p class="text-zinc-400 text-lg mb-4">Managing several products or clients?</p>
+              <p class="text-zinc-400 text-lg mb-8">
+                Revinify lets you link them all — and get a unified view of payments, churn, and revenue in real time.
+              </p>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-start">
+                  <svg class="icon text-purple-500 mr-3 mt-0.5" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-zinc-300">Connect unlimited Stripe accounts</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="icon text-purple-500 mr-3 mt-0.5" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-zinc-300">Real-time notifications across all accounts</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="icon text-purple-500 mr-3 mt-0.5" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-zinc-300">Unified dashboard for all your metrics</span>
+                </li>
+              </ul>
+              <a href="#waitlist"
+                class="btn btn-primary px-8 h-12 rounded-md bg-purple-600 hover:bg-purple-700 text-white flex items-center justify-center">
+                Get Started
+                <svg class="icon ml-2" viewBox="0 0 24 24" width="16" height="16">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div class="relative">
+                <div
+                  class="absolute inset-0 bg-gradient-to-b from-purple-600/10 to-black/10 rounded-xl pointer-events-none">
+                </div>
+                <div
+                  class="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+                  <img src="https://placehold.co/600x500/18181b/d4d4d8" alt="Multi-Stripe Dashboard"
+                    class="w-full object-cover">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Who It's For Section -->
+      <section class="w-full">
+        <div class="container px-4 md:px-6">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div
+              class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium">
+              <span>🎯 Who It's For</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tighter">Built for Stripe Power Users</h2>
+            <p class="max-w-[700px] text-zinc-400 text-lg md:text-xl">
+              Revinify is designed for those who manage multiple Stripe accounts and need a unified monitoring
+              solution.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div
+              class="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-xl p-8 transition-all duration-200 hover:border-purple-500/50 hover:bg-zinc-800/60">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-3">Indie Hackers</h3>
+              <p class="text-zinc-400">
+                💻 Running multiple Stripe projects and need a unified view of all your revenue streams
+              </p>
+            </div>
+            <div
+              class="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-xl p-8 transition-all duration-200 hover:border-purple-500/50 hover:bg-zinc-800/60">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-3">Founders</h3>
+              <p class="text-zinc-400">
+                🧑‍💼 Managing several SaaS products and need real-time insights across all of them
+              </p>
+            </div>
+            <div
+              class="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-xl p-8 transition-all duration-200 hover:border-purple-500/50 hover:bg-zinc-800/60">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold mb-3">Freelancers</h3>
+              <p class="text-zinc-400">
+                💼 With multiple client Stripe accounts that need monitoring and management
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Core Features -->
+      <section id="features" class="w-full py-1 md:py-32">
+        <div class="container px-4 md:px-6">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div
+              class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium">
+              <span>🔔 Core Features</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tighter">Automate. Monitor. Alert.</h2>
+            <p class="max-w-[700px] text-zinc-400 text-lg md:text-xl">
+              Everything you need to monitor your Stripe accounts in one place
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="card bg-zinc-900/60 backdrop-blur-sm border-zinc-800 text-white overflow-hidden">
+              <div class="p-0">
+                <div class="p-6">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                    <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                      <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3">Multi-Stripe Support</h3>
+                  <p class="text-zinc-400 mb-6">
+                    🔗 Connect unlimited Stripe accounts and monitor them all from a single dashboard
+                  </p>
+                </div>
+                <div class="relative h-[200px] w-full bg-zinc-800">
+                  <img src="https://placehold.co/600x200/18181b/d4d4d8" alt="Multi-Stripe Support"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+            </div>
+            <div class="card bg-zinc-900/60 backdrop-blur-sm border-zinc-800 text-white overflow-hidden">
+              <div class="p-0">
+                <div class="p-6">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                    <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3">Real-Time Alerts</h3>
+                  <p class="text-zinc-400 mb-6">
+                    ⚡ Get instant notifications for new payments, refunds, disputes, and more
+                  </p>
+                </div>
+                <div class="relative h-[200px] w-full bg-zinc-800">
+                  <img src="https://placehold.co/600x200/18181b/d4d4d8" alt="Real-Time Alerts"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+            </div>
+            <div class="card bg-zinc-900/60 backdrop-blur-sm border-zinc-800 text-white overflow-hidden">
+              <div class="p-0">
+                <div class="p-6">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                    <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3">Revenue Dashboard</h3>
+                  <p class="text-zinc-400 mb-6">
+                    📊 View combined revenue metrics across all your Stripe accounts in one place
+                  </p>
+                </div>
+                <div class="relative h-[200px] w-full bg-zinc-800">
+                  <img src="https://placehold.co/600x200/18181b/d4d4d8" alt="Revenue Dashboard"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+            </div>
+            <div class="card bg-zinc-900/60 backdrop-blur-sm border-zinc-800 text-white overflow-hidden">
+              <div class="p-0">
+                <div class="p-6">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 mb-6">
+                    <svg class="icon text-purple-400" viewBox="0 0 24 24">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3">Multi-Channel Notifications</h3>
+                  <p class="text-zinc-400 mb-6">
+                    📱 Choose how you want to be notified: Slack, Telegram, Email, or all three
+                  </p>
+                </div>
+                <div class="relative h-[200px] w-full bg-zinc-800">
+                  <img src="https://placehold.co/600x200/18181b/d4d4d8" alt="Multi-Channel Notifications"
+                    class="w-full h-full object-cover">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="w-full py-1 md:py-32 bg-zinc-900/50">
+        <div class="container px-4 md:px-6">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div
+              class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium">
+              <span>💰 Pricing – Founder's Deal</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tighter">Simple, transparent pricing.</h2>
+            <p class="max-w-[700px] text-zinc-400 text-lg md:text-xl">
+              All plans include a 7-day free trial & 30-day money-back guarantee.
+            </p>
+          </div>
+
+          <!-- Pricing Table -->
+          <div
+            class="max-w-5xl mx-auto overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm">
+            <!-- Table Header -->
+            <div class="grid grid-cols-4 border-b border-zinc-800 bg-zinc-900/80">
+              <div class="p-6 text-left font-medium">Plan</div>
+              <div class="p-6 text-left font-medium">Price</div>
+              <div class="p-6 text-left font-medium">Accounts</div>
+              <div class="p-6 text-left font-medium"></div>
+            </div>
+
+            <!-- Starter Plan -->
+            <div class="grid grid-cols-4 items-center border-b border-zinc-800 hover:bg-zinc-800/50 transition-colors">
+              <div class="p-6">
+                <h3 class="font-bold">Starter</h3>
+                <p class="text-sm text-zinc-400">For solo founders</p>
+              </div>
+              <div class="p-6">
+                <div class="font-bold">$9.99</div>
+                <div class="text-sm text-zinc-400 line-through">$14.99</div>
+              </div>
+              <div class="p-6">
+                <div>1 Stripe account</div>
+              </div>
+              <div class="p-6 text-right">
+                <button class="btn bg-zinc-800 hover:bg-zinc-700 text-white px-6 py-2 rounded-md">Get Started</button>
+              </div>
+            </div>
+
+            <!-- Pro Plan -->
+            <div
+              class="grid grid-cols-4 items-center border-b border-purple-500 bg-zinc-800/50 hover:bg-zinc-800/70 transition-colors relative animate-pulse-subtle">
+              <div
+                class="absolute -top-3 left-6 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg border border-purple-400/20 animate-float z-20">
+                ✨ POPULAR
+              </div>
+              <div
+                class="absolute inset-0 border-2 border-purple-500/50 rounded-none pointer-events-none animate-glow z-10">
+              </div>
+              <div class="p-6 relative z-10">
+                <h3 class="font-bold text-lg text-white">Pro</h3>
+                <p class="text-sm text-zinc-300">For growing businesses</p>
+              </div>
+              <div class="p-6 relative z-10">
+                <div class="font-bold text-lg text-white">$19.99</div>
+                <div class="text-sm text-zinc-400 line-through">$24.99</div>
+              </div>
+              <div class="p-6 relative z-10">
+                <div class="text-white">5 accounts</div>
+              </div>
+              <div class="p-6 text-right relative z-10">
+                <button
+                  class="btn bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-md shadow-md shadow-purple-900/30 animate-pulse-button">
+                  Get Started
+                </button>
+              </div>
+            </div>
+
+            <!-- Team Plan -->
+            <div class="grid grid-cols-4 items-center border-b border-zinc-800 hover:bg-zinc-800/50 transition-colors">
+              <div class="p-6">
+                <h3 class="font-bold">Team</h3>
+                <p class="text-sm text-zinc-400">For small teams</p>
+              </div>
+              <div class="p-6">
+                <div class="font-bold">$29.99</div>
+                <div class="text-sm text-zinc-400 line-through">$39.99</div>
+              </div>
+              <div class="p-6">
+                <div>10 accounts</div>
+              </div>
+              <div class="p-6 text-right">
+                <button class="btn bg-zinc-800 hover:bg-zinc-700 text-white px-6 py-2 rounded-md">Get Started</button>
+              </div>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="grid grid-cols-4 items-center hover:bg-zinc-800/50 transition-colors">
+              <div class="p-6">
+                <h3 class="font-bold">Enterprise</h3>
+                <p class="text-sm text-zinc-400">For large organizations</p>
+              </div>
+              <div class="p-6">
+                <div class="font-bold">$399.99</div>
+                <div class="text-sm text-zinc-400 line-through">$499.99</div>
+              </div>
+              <div class="p-6">
+                <div>100+ accounts</div>
+                <div class="text-sm text-zinc-400">Custom features</div>
+              </div>
+              <div class="p-6 text-right">
+                <button class="btn bg-zinc-800 hover:bg-zinc-700 text-white px-6 py-2 rounded-md">Contact Sales</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Info -->
+          <div class="mt-12 text-center">
+            <p class="text-zinc-400">
+              Need a custom plan?
+              <a href="#" class="text-purple-400 hover:underline">
+                Contact us
+              </a>
+              for custom pricing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section id="waitlist" class="w-full relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/0 pointer-events-none"></div>
+        <div class="container px-4 md:px-6 relative z-10">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto">
+            <div
+              class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium mb-4">
+              <span>✨ Limited Time Offer</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tighter">
+              Ready to simplify your Stripe monitoring?
+            </h2>
+            <p class="max-w-[700px] text-zinc-400 text-lg md:text-xl">
+              Join the waitlist today and be the first to know when Revinify launches. Get 7 days free when we launch.
+            </p>
+            <div class="w-full max-w-md space-y-2 mt-6">
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input type="email" placeholder="Enter your email"
+                  class="flex h-12 w-full rounded-md border border-zinc-700 bg-zinc-800/50 px-4 py-2 text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                <button type="submit"
+                  class="btn bg-purple-600 hover:bg-purple-700 text-white h-12 px-6 sm:w-auto w-full rounded-md flex items-center justify-center">
+                  <svg class="icon mr-2" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  Join Waitlist
+                </button>
+              </div>
+              <p class="text-xs text-zinc-500">
+                By signing up, you agree to our Terms of Service and Privacy Policy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="w-full border-t border-zinc-800 bg-black py-8">
+      <div class="container flex flex-col md:flex-row items-center justify-between gap-4 px-4 md:px-6">
+        <div class="flex gap-2 items-center text-lg font-bold">
+          <svg class="icon text-purple-500" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span>Revinify</span>
+        </div>
+        <div class="flex gap-6">
+          <a href="#features" class="text-sm text-zinc-400 hover:text-white">
+            Features
+          </a>
+          <a href="#pricing" class="text-sm text-zinc-400 hover:text-white">
+            Pricing
+          </a>
+          <a href="#" class="text-sm text-zinc-400 hover:text-white">
+            Terms
+          </a>
+          <a href="#" class="text-sm text-zinc-400 hover:text-white">
+            Privacy
+          </a>
+        </div>
+        <p class="text-center text-sm text-zinc-500">
+          © 2025 Revinify. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple script to handle smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
